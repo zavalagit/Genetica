@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaUsuarios extends Migration
+class CrearTablaMenuRol extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CrearTablaUsuarios extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('usuario',50);
-            $table->string('password',100);
-            $table->string('nombre', 50);
+        Schema::create('menu_rol', function (Blueprint $table) {
+            $table->unsignedInteger('rol_id');
+            $table->foreign('rol_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->unsignedInteger('menu_id');
+            $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
             $table->timestamps();
-
+            
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
         });
@@ -32,6 +32,6 @@ class CrearTablaUsuarios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('menu_rol');
     }
 }

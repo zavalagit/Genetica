@@ -20,6 +20,9 @@ class CrearTablaPermisoRol extends Migration
             $table->integer('permiso_id')->unsigned();
             $table->foreign('permiso_id')->references('id')->on('permisos')->onDelete('cascade');
             $table->timestamps();
+
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 
