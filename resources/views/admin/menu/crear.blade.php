@@ -25,8 +25,15 @@
                     @include('admin.menu.form')
                 </div>        
                   
-                <div class="row">
-                    @include('includes.boton-form-crear')
+                <div class="row justify-content-between">
+                    <dir class="col-sm-4">
+                        @include('includes.boton-form-crear')
+                    </dir>
+                    <dir class="col-sm-6">
+                        @include('includes.form-error')
+                        @include('includes.mensaje')
+                    </dir>
+                    
                 </div>            
                         
                     
@@ -35,5 +42,10 @@
         
     </div>
 </nav>
+
+<div class="col-auto p-5">
+   
+</div>  
+
     
 @endsection
