@@ -11,6 +11,8 @@
 
    <link rel="stylesheet" href="{{asset('css/estilo3.css')}}">
    <link rel="stylesheet" href="{{asset('css/estilo4.css')}}">
+   <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+   
    <link rel="stylesheet" href="{{asset('css/jquery.mCustomScrollbar.min.css')}}">
    <link rel="stylesheet" href="{{asset('fontawesome/css/all.css')}}">
    <title>@yield('titulo', 'Genetica')</title>
