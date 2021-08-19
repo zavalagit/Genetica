@@ -129,8 +129,12 @@
    
 
 <!--JS-->
-<script src="{{asset('js/popper.min.js')}}"></script>
+{{--  <script src="{{asset('js/popper.min.js')}}"></script>  --}}
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
+
+<script src="{{asset('js/jquery-validation/jquery.validate.min.js')}}"></script>
+<script src="{{asset('js/jquery-validation/localization/messages_es.min.js')}}"></script>
+<script src="{{asset('js/funciones.js')}}"></script>
 {{-- <script src="{{asset('js/sidebarcollapse.js')}}"></script>   --}}
 
 {{-- <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script> --}}
@@ -138,5 +142,6 @@
 {{-- <script src="{{asset('js/bootstrap.min.js')}}"></script> --}}
 <script src="{{asset('js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 <script src="{{asset('js/sidebarcollapse3.js')}}"></script>
+@yield("scripts")
 </body>
 </html>

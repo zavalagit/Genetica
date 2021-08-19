@@ -4,6 +4,10 @@
     Crear Menús
 @endsection
 
+@section("scripts")
+<script src="{{asset("js/pages/scripts/admin/crear.js")}}" type="text/javascript"></script>
+@endsection
+
 
 
 @section('contenido')
@@ -19,7 +23,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 0px; margin-top: 30px;">
     <div class="container-fluid">
         
-            <form action="{{route('guardar_menu')}}" id="form-general" class="col-12" method="POST">
+            <form action="{{route('guardar_menu')}}" id="form-general" class="col-12" method="POST" autocomplete="off">
                 @csrf
                 <div class="row">
                     @include('admin.menu.form')
