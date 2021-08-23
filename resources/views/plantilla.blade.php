@@ -4,16 +4,15 @@
    <meta charset="utf8_decode()">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-   {{-- <link rel="stylesheet" href="{{asset('css/estilo.css')}}"> --}}
-   {{-- <link rel="stylesheet" href="{{asset('css/jquery.mCustomScrollbar.min.css')}}"> --}}
-   <script src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
+   
+
+   <link rel="stylesheet" href="{{asset('css/bootstrap4css/bootstrap.min.css')}}">
 
    <link rel="stylesheet" href="{{asset('css/estilo3.css')}}">
    <link rel="stylesheet" href="{{asset('css/estilo4.css')}}">
    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
    
-   <link rel="stylesheet" href="{{asset('css/jquery.mCustomScrollbar.min.css')}}">
+   
    <link rel="stylesheet" href="{{asset('fontawesome/css/all.css')}}">
    <title>@yield('titulo', 'Genetica')</title>
    
@@ -129,17 +128,12 @@
    
 
 <!--JS-->
-{{--  <script src="{{asset('js/popper.min.js')}}"></script>  --}}
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/jquery/jquery-3.3.1.min.js')}}"></script>	 
+<script src="{{asset('js/popper/popper.min.js')}}"></script>
+<script src="{{asset('js/bootstrap4js/bootstrap.min.js')}}"></script>
+<!-- Plugins que solo se ocupen en paginas especiales -->	 	
+@yield("scriptsPlugins")
 
-<script src="{{asset('js/jquery-validation/jquery.validate.min.js')}}"></script>
-<script src="{{asset('js/jquery-validation/localization/messages_es.min.js')}}"></script>
-<script src="{{asset('js/funciones.js')}}"></script>
-{{-- <script src="{{asset('js/sidebarcollapse.js')}}"></script>   --}}
-
-{{-- <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script> --}}
-{{-- <script src="{{asset('js/popper.min.js')}}"></script> --}}
-{{-- <script src="{{asset('js/bootstrap.min.js')}}"></script> --}}
 <script src="{{asset('js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 <script src="{{asset('js/sidebarcollapse3.js')}}"></script>
 @yield("scripts")

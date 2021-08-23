@@ -1,4 +1,6 @@
 $(document).ready(function () {
-    Genetica.validacionGeneral('form-general');
+    $('#icono').on('blur', function () {
+        $('#mostrar-icono').removeClass().addClass('fa ' + $(this).val());
+    });
     
 });
