@@ -21,7 +21,7 @@
 @endsection
 
 @section("scripts")
-<script src="{{asset('js/pages/scripts/admin/index.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/pages/scripts/admin/menu/index.js')}}" type="text/javascript"></script>
 @endsection
 
 

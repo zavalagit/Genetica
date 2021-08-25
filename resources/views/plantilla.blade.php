@@ -136,6 +136,7 @@
 <script src="{{asset('js/pages/scripts/admin/scripts.js')}}"></script>
 <script src="{{asset('js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 <script src="{{asset('js/sidebarcollapse3.js')}}"></script>
+<script src="{{asset('js/funciones.js')}}"></script>
 @yield("scripts")
 </body>
 </html>
