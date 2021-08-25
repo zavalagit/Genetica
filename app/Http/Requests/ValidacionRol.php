@@ -3,10 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\ValidarCampoUrl;
 
-
-class ValidacionMenu extends FormRequest
+class ValidacionRol extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,18 +24,16 @@ class ValidacionMenu extends FormRequest
     public function rules()
     {
         return [
-            'titulo' => 'required|max:50|unique:menus,titulo,' . $this->route('id'),
-            'url' => ['required', 'max:100', new ValidarCampoUrl],
-            'icono' => 'nullable|max:50'
+            'nombre' => 'required|max:50|unique:roles,nombre,' . $this->route('id'),
+            
         ];
     }
 
     public function messages()
     {
         return [
-            'titulo.required' => 'el campo Titulo es requerido',
-            'titulo.unique' => 'el campo Titulo ya ha sido usado',
-            'url.required'  => 'el campo url es requerido',
+            'nombre.required' => 'el campo Nombre es requerido',
+            'nombre.unique' => 'el campo Nombre ya ha sido usado',
         ];
     }
 }
