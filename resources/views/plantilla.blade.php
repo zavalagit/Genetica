@@ -11,6 +11,8 @@
    <link rel="stylesheet" href="{{asset('css/estilo3.css')}}">
    <link rel="stylesheet" href="{{asset('css/estilo4.css')}}">
    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+
+   <link rel="stylesheet" href="{{asset('css/jquery-confirmv3/jquery-confirm.min.css')}}"> 
    
    
    <link rel="stylesheet" href="{{asset('fontawesome/css/all.css')}}">
@@ -134,9 +136,12 @@
 <!-- Plugins que solo se ocupen en paginas especiales -->	 	
 @yield("scriptsPlugins")
 <script src="{{asset('js/pages/scripts/admin/scripts.js')}}"></script>
-<script src="{{asset('js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-<script src="{{asset('js/sidebarcollapse3.js')}}"></script>
+<script src="{{asset('js/bootstrap4js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script src="{{asset('js/bootstrap4js/sidebarcollapse3.js')}}"></script>
 <script src="{{asset('js/funciones.js')}}"></script>
+
+<script src="{{asset('js/jquery-confirmv3/jquery-confirm.min.js')}}"></script>
+
 @yield("scripts")
 </body>
 </html>
