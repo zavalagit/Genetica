@@ -1,23 +1,17 @@
+//esta funcion elige que tipo de aletifyjs se requiere
 var Genetica = function () {
     
     return {
         
-        notificaciones: function (mensaje, titulo, tipo) {
-            toastr.options = {
-                closeButton: true,
-                newestOnTop: true,
-                positionClass: 'toast-top-right',
-                preventDuplicates: true,
-                timeOut: '5000'
-            };
+        notificaciones: function (mensaje, tipo) {
             if (tipo == 'error') {
-                toastr.error(mensaje, titulo);
+                alertify.error(mensaje);
             } else if (tipo == 'success') {
-                toastr.success(mensaje, titulo);
+                alertify.success(mensaje);
             } else if (tipo == 'info') {
-                toastr.info(mensaje, titulo);
+                alertify.message(mensaje);
             } else if (tipo == 'warning') {
-                toastr.warning(mensaje, titulo);
+                alertify.warning(mensaje);
             }
         },
     }

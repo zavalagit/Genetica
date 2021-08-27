@@ -12,7 +12,10 @@
    <link rel="stylesheet" href="{{asset('css/estilo4.css')}}">
    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
 
-   <link rel="stylesheet" href="{{asset('css/jquery-confirmv3/jquery-confirm.min.css')}}"> 
+   <link rel="stylesheet" href="{{asset('css/jquery-confirmv3/jquery-confirm.min.css')}}">
+   
+   <link rel="stylesheet" href="{{asset('alertifyjs/css/alertify.min.css')}}">
+   <link rel="stylesheet" href="{{asset('alertifyjs/css/themes/default.min.css')}}">
    
    
    <link rel="stylesheet" href="{{asset('fontawesome/css/all.css')}}">
@@ -141,6 +144,8 @@
 <script src="{{asset('js/funciones.js')}}"></script>
 
 <script src="{{asset('js/jquery-confirmv3/jquery-confirm.min.js')}}"></script>
+
+<script src="{{asset('alertifyjs/alertify.min.js')}}"></script>
 
 @yield("scripts")
 </body>

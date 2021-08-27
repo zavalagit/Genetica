@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    $("#tabla-rol").on('submit', '.form-eliminar', function (e) {
+   //manda llamar jquery-confirm para saber si quieres eliminar el registro
+       $("#tabla-rol").on('submit', '.form-eliminar', function (e) {
         e.preventDefault();
         const form = $(this);
         $.confirm({
@@ -32,17 +33,19 @@ $(document).ready(function () {
         
     });
 
+    //manda llamar el js funciones que utiliza la libreria alertifyjs
     function ajaxRequest(form) {
         $.ajax({
             url: form.attr('action'),
             type: 'POST',
             data: form.serialize(),
             success: function (respuesta) {
+                console.log(respuesta.mensaje);
                 if (respuesta.mensaje == "ok") {
                     form.parents('tr').remove();
-                    Genetica.notificaciones('El registro fue eliminado correctamente', 'Genetica', 'success');
+                    Genetica.notificaciones('El registro fue eliminado correctamente', 'success');
                 } else {
-                    Genetica.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Genetica', 'error');
+                    Genetica.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'error');
                 }
 
             },

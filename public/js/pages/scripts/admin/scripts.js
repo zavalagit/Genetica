@@ -1,4 +1,4 @@
-/* Boton Borrar Campos De Formulario*/
+/* esta funcion elimina un sierto tiempo los mensajes */
 $(document).ready(function () {
     //Cerrar Las Alertas Automaticamente
     $('.alert[data-auto-dismiss]').each(function (index, element) {
@@ -9,10 +9,17 @@ $(document).ready(function () {
         }, timeout);
     });
     
-
+    //esto es el diseño de los mensajes de tooltip
+    $(function () {
+        $('body').tooltip({
+            selector: '[data-toggle="tooltip"]',
+            trigger: 'hover',
+            placement: 'top',
+            html: true,
+            container: 'body'
+            
+        });
+    })
     
 });
 
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  });

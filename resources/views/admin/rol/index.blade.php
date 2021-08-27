@@ -100,9 +100,15 @@
                 padding: 0 0 0 5px;
                 font-size: 14px !important;
                 line-height: 1.5;
+                
                 }
 
-      
+                .boton:focus {
+                    outline: none;
+                    box-shadow: none;
+                  }
+
+                
 
    </style>
 @endsection
@@ -156,7 +162,7 @@
                                                                     <form action="{{route('eliminar_rol', ['id' => $rol->id])}}" class="d-inline form-eliminar" method="POST">
                                                                         @csrf @method("delete")
                                                                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Eliminar este registro">
-                                                                            <button type="submit" class="eliminar boton">
+                                                                            <button type="submit" class="eliminar boton" id="campo" rel="tooltip">
                                                                                 <i class="fas fa-trash-alt fa-2x text-danger"></i>
                                                                             </button>
                                                                         </span>
