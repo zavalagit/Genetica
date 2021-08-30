@@ -9,6 +9,13 @@ class Menu extends Model
     protected $table = "menus";
     protected $fillable = ['titulo', 'url', 'icono'];
     protected $guarded = ['id'];
+
+    //relacion de muchos a muchos menus con menu_rol
+    //->withTimestamps() se utiliza para el attach ponga fecha de created_at
+    public function roles()
+    {
+        return $this->belongsToMany(Rol::class, 'menu_rol')->withTimestamps();
+    }
     
     public function getHijos($padres, $line)
     {
