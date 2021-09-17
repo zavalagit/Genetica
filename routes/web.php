@@ -24,7 +24,13 @@ Route::get('kit/{buscar?}','GeneticaController@kit');
 
 //Route::get('admin/permiso', 'Admin\PermisoController@index')->name('permiso');
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+//seguridad
+Route::get('seguridad/login', 'Seguridad\LoginController@index')->name('login');
+//Route::post('seguridad/login', 'Seguridad\LoginController@login')->name('login_post');
+//Route::get('seguridad/logout', 'Seguridad\LoginController@logout')->name('logout');
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+    Route::get('', 'AdminController@index');
     Route::get('permiso', 'PermisoController@index')->name('permiso');
     Route::get('permiso/crear', 'PermisoController@crear')->name('crear_permiso');
     //Route::get('menu', 'MenuController@index')->name('menu');
