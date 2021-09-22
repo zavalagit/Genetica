@@ -33,12 +33,17 @@
             <div class="container-fluid">
                 
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
+                        <i class="fas fa-align-left"></i> 
                         <span>Menu</span>
                     </button>
+
+                    {{-- <button type="button" id="sidebarCollapse" class="btn btn-danger" onclick="{{route('logout')}}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Salir</span>
+                    </button> --}}
                     
                     
-                        <h2>Sistema de Quimica Genetica</h2>
+                        <h2>Bienvanido {{session()->get('nombre_usuario') ?? 'Invitado'}}</h2>
                 
                     
                 
@@ -96,9 +101,9 @@
                         </li>
                     </ul>
                 </li>
-                {{-- <li>
-                    <a href="#">Portfolio</a>
-                </li> --}}
+                <li>
+                    <a href="{{route('logout')}}">Salir</a>
+                </li>
                 {{-- <li>
                     <a href="#">Contact</a>
                 </li> --}}

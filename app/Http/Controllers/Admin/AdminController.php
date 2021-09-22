@@ -10,8 +10,8 @@ class AdminController extends Controller
     
     public function index()
     {
-
-        //vista de una grafica 
+        //dd(session()->all());
+        //vista de una grafica o una estadistica de libros o un informe general 
         return view('admin.admin.index');
     }
 

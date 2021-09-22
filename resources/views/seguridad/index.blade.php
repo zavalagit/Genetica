@@ -2,7 +2,7 @@
 <html>
     
 <head>
-	<title>My Awesome Login Page</title>
+	<title>Login Sistema de Genetica</title>
 	
     <link rel="stylesheet" href="{{asset('css/bootstrap4css/bootstrap.min.css')}}">
 
@@ -20,26 +20,39 @@
 						<img src="{{asset('logos/logo_fge.png')}}" class="brand_logo drop" alt="Logo">
 					</div>
 				</div>
+				@if($errors->any())
+					<div style="position:absolute; top:20%; left:1%;"; class="alert alert-danger alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+				
 				<div class="d-flex justify-content-center form_container">
-					<form>
+					<form  action="{{route('login_post')}}" method="POST" autocomplete="off">
+						@csrf
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="username">
+							<input type="text" name="usuario" class="form-control input_user" value="{{old('usuario')}}" placeholder="Usuario">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="" class="form-control input_pass" value="" placeholder="password">
+							<input type="password" name="password" class="form-control input_pass" value="" placeholder="Contraseña">
 						</div>
 						
 							<div class="d-flex justify-content-center mt-3 login_container">
-				 				<button type="button" name="button" class="btn login_btn">INICIAR</button>
+				 				<button type="submit" class="btn login_btn">INICIAR</button>
 				   			</div>
 					</form>
 				</div>
+				
 			
 			</div>
 		</div>
