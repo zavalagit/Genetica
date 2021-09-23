@@ -21,7 +21,7 @@
    
       
         <div align="center">
-            <h2>Bienvenido al Sistema De Genetica</h2>
+            <h2>Bienvenido al Sistema De Genetica Bienvenido al Sistema De Genetica {{session()->get('nombre_usuario') ?? 'Invitado'}}</h2>
         </div>
             
         
@@ -30,7 +30,8 @@
          <b>
          
             <img class="mx-auto d-block circular drop" style="width:400px; height:400px" src="{{asset('logos/logo_fge.png')}}"> <!-- random image -->
-              
+          
+        @include('includes.mensaje')
    
 
    

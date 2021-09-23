@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcomes');
-});
+// Route::get('/', function () {
+//     return view('welcomes');
+// });
 
 Route::get('home','GeneticaController@home');
 Route::get('inicio','GeneticaController@inicio');
@@ -23,6 +23,9 @@ Route::get('muestras/{buscar?}','GeneticaController@todas');
 Route::get('kit/{buscar?}','GeneticaController@kit');
 
 //Route::get('admin/permiso', 'Admin\PermisoController@index')->name('permiso');
+
+//pagina de inicio
+Route::get('/', 'InicioController@index')->name('inicio');
 
 //seguridad
 Route::get('seguridad/login', 'Seguridad\LoginController@index')->name('login');
