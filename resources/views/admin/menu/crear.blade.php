@@ -83,9 +83,16 @@
 <div style="height: 50px;"></div>
     <div class="container">
         <div class="row">
+            
             <div class="col-lg-12">
+                
                 <div class="card shadow-lg p-3 mb-5 bg-white ">
-                    <div class="card-header text-center">CREAR MENÚS</div>
+                    <div class="card-header text-center">
+                        <div class="row">
+                            <div class="col-12 col-md-8 text-center"><h4>CREAR MENÚS</h4></div>
+                            <div class="col-6 col-md-4"><a href="{{route('menu')}}" class="btn btn-info float-right">Listado</a></div>
+                          </div>
+                    </div>
                     <div class="card-body">
                             <form action="{{route('guardar_menu')}}" id="form-general" class="needs-validation" method="POST" autocomplete="off">
                             @csrf
