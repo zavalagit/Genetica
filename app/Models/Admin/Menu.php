@@ -33,8 +33,7 @@ class Menu extends Model
         if ($front) {
             return $this->whereHas('roles', function ($query) {
                 $query->where('rol_id', session()->get('rol_id'))->orderby('menu_id');
-            })->where('estado', 1)
-                ->orderby('menu_id')
+            })->orderby('menu_id')
                 ->orderby('orden')
                 ->get()
                 ->toArray();
@@ -46,6 +45,7 @@ class Menu extends Model
         }
     }
 
+    //funcion para obtener el menu con true
     public static function getMenu($front = false)
     {
         $menus = new Menu();

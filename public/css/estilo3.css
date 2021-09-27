@@ -100,7 +100,7 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #C6C6C6;
+    background: #9968a5;
 }
 
 #sidebar ul.components {
@@ -119,14 +119,16 @@ a:focus {
     display: block;
 }
 
+/* cambia el color cuando el cursor esta sobre el */
 #sidebar ul li a:hover {
     color: #7386D5;
     background: #fff;
 }
 
+/* cambia el todo lo seleccionado */
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #152f4a;
+    color: #e61d27;
     background: #C6C6C6;
 }
 
