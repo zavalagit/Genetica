@@ -22,6 +22,7 @@
 
 @section("scripts")
 <script src="{{asset('js/pages/scripts/admin/menu/index.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/pages/scripts/admin/scripts.js')}}" type="text/javascript"></script>
 @endsection
 
 
@@ -31,8 +32,17 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
+                @include('includes.mensaje')
                 <div class="card shadow-lg p-3 mb-5 bg-white ">
-                    <div class="card-header text-center">VISTA DE MENÚS</div>
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-12 col-md-8 text-center"><h4>VISTA DE MENÚS</h4></div>
+                            <div class="col-6 col-md-4"><a href="{{route('crear_menu')}}" class="btn btn-success float-right">Crear menú</a></div>
+                          </div>
+                        
+                        
+                    </div>
+                   
                     <div class="card-body">
                         @csrf
                         <div class="dd" id="nestable">
