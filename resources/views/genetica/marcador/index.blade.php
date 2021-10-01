@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 @section('titulo')
-    Roles
+    Marcadores
 @endsection
 
 @section('css')
@@ -129,13 +129,13 @@
                                 <div class="card-header text-center">
                                     <div class="row">
                                         <div class="col-12 col-md-8 text-center">
-                                            @if (count($roles))
-                                                <h4>LISTADO DE ROLES<span class="badge badge-warning badge-pill">{{$roles->count()}}</span></h4>
+                                            @if (count($marcadores))
+                                                <h4>LISTADO DE MARCADORES<span class="badge badge-warning badge-pill">{{$marcadores->count()}}</span></h4>
                                             @else
-                                                <h4>LISTADO DE ROLES<span class="badge badge-warning badge-pill">0</span></h4>
+                                                <h4>LISTADO DE MARCADORES<span class="badge badge-warning badge-pill">0</span></h4>
                                             @endif
                                         </div>
-                                        <div class="col-6 col-md-4"><a href="{{route('crear_rol')}}" class="btn btn-success float-right">Crear Rol</a></div>
+                                        <div class="col-6 col-md-4"><a href="{{route('crear_marcador')}}" class="btn btn-success float-right">Crear Marcador</a></div>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -148,23 +148,23 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if (count($roles))
+                                            @if (count($marcadores))
                                                 @php
                                                 $no = 1;
                                                 @endphp
                     
-                                                    @foreach ($roles as $key => $rol)
+                                                    @foreach ($marcadores as $key => $marcador)
                                                         <tr>
                                                             <th class="th-contador" scope="row" width="1.5%">{{$no++}}</th>
-                                                            <td>{{$rol->nombre}}</td>
+                                                            <td>{{$marcador->nombre}}</td>
                                                             <td>
                                                                 
-                                                                    <a href="{{route('editar_rol', ['id' => $rol->id])}}">
+                                                                    <a href="{{route('editar_marcador', ['id' => $marcador->id])}}">
                                                                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Editar este registro">
                                                                             <i class="fas fa-edit fa-2x"></i>
                                                                         </span>
                                                                     </a>
-                                                                    <form action="{{route('eliminar_rol', ['id' => $rol->id])}}" class="d-inline form-eliminar" method="POST">
+                                                                    <form action="{{route('eliminar_marcador', ['id' => $marcador->id])}}" class="d-inline form-eliminar" method="POST">
                                                                         @csrf @method("delete")
                                                                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Eliminar este registro">
                                                                             <button type="submit" class="eliminar boton" id="campo" rel="tooltip">

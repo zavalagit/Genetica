@@ -72,3 +72,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::get('menu-rol', 'MenuRolController@index')->name('menu_rol');
     Route::post('menu-rol', 'MenuRolController@guardar')->name('guardar_menu_rol');
 });
+
+/*RUTAS DE GENETICA*/
+    /*RUTAS DE MARCADORES*/
+    Route::get('marcador', 'Genetica\MarcadorController@index')->name('marcador');
+    Route::get('marcador/crear', 'Genetica\MarcadorController@crear')->name('crear_marcador');
+    Route::post('marcador', 'Genetica\MarcadorController@guardar')->name('guardar_marcador');
+    Route::get('marcador/{id}/editar', 'Genetica\MarcadorController@editar')->name('editar_marcador');
+    Route::put('marcador/{id}', 'Genetica\MarcadorController@actualizar')->name('actualizar_marcador');
+    Route::delete('marcador/{id}', 'Genetica\MarcadorController@eliminar')->name('eliminar_marcador');
