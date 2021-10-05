@@ -3,7 +3,7 @@
     <span>Actualizar</span>
 </button>
 
-<button type="reset" name="cancelar_btn" id="sidebarCollapse" class="btn  btn-secondary btn-lg">
+{{--  <button type="reset" name="cancelar_btn" id="sidebarCollapse" class="btn  btn-secondary btn-lg">
     <i class="fas fa-times"></i>
     <span>Cancelar</span>
-</button>
+</button>  --}}

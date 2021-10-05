@@ -1,11 +1,11 @@
 @extends('plantilla')
 
 @section('titulo')
-    Editar Permisos
+    Editar Usuario
 @endsection
 
 @section("scripts")
-<script src="{{asset("js/pages/scripts/admin/permiso/crear.js")}}" type="text/javascript"></script>
+<script src="{{asset("js/pages/scripts/admin/usuario/crear.js")}}" type="text/javascript"></script>
 @endsection
 
 
@@ -89,16 +89,16 @@
                 <div class="card shadow-lg p-3 mb-5 bg-white ">
                     <div class="card-header text-center">
                         <div class="row">
-                            <div class="col-12 col-md-8 text-center"><h4>EDITAR PERMISO</h4></div>
-                            <div class="col-6 col-md-4"><a href="{{route('permiso')}}" class="btn btn-info float-right"><i class="fa fa-fw fa-reply-all"></i>Listado</a></div>
+                            <div class="col-12 col-md-8 text-center"><h4>EDITAR USUARIO</h4></div>
+                            <div class="col-6 col-md-4"><a href="{{route('usuario')}}" class="btn btn-info float-right"><i class="fa fa-fw fa-reply-all"></i>Listado</a></div>
                           </div>
                     </div>
                     <div class="card-body">
-                            <form action="{{route('actualizar_permiso', ['id' => $data->id])}}" id="form-general" class="needs-validation" method="POST" autocomplete="off">
+                            <form action="{{route('actualizar_usuario', ['id' => $data->id])}}" id="form-general" class="needs-validation" method="POST" autocomplete="off">
                             @csrf @method("put")
                             <div class="form-row">
                             
-                                    @include('admin.permiso.form')
+                                    @include('admin.usuario.form')
                                 
                             </div>
                             <div class="form-row">
@@ -123,3 +123,4 @@
 
     
 @endsection
+

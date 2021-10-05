@@ -19,7 +19,7 @@ class CrearTablaRolUsuario extends Migration
             $table->foreign('rol_id')->references('id')->on('roles')->onDelete('cascade');
             $table->integer('usuario_id')->unsigned();
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
-            $table->boolean('estado');
+            $table->boolean('estado')->default(1);
             $table->timestamps();
 
             $table->charset = 'utf8mb4';

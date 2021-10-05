@@ -90,7 +90,7 @@
                     <div class="card-header text-center">
                         <div class="row">
                             <div class="col-12 col-md-8 text-center"><h4>CREAR MENÚS</h4></div>
-                            <div class="col-6 col-md-4"><a href="{{route('menu')}}" class="btn btn-info float-right">Listado</a></div>
+                            <div class="col-6 col-md-4"><a href="{{route('menu')}}" class="btn btn-info float-right"><i class="fa fa-fw fa-reply-all"></i>Listado</a></div>
                           </div>
                     </div>
                     <div class="card-body">
