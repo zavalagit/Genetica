@@ -40,7 +40,7 @@
         }
 
         /* modificaciones de las tablas */
-        #tabla-rol{
+        #tabla-genetica{
             width: 100% !important;
         }
         #tabla-valores{
@@ -114,7 +114,7 @@
 @endsection
 
 @section("scripts")
-<script src="{{asset('js/pages/scripts/admin/rol/index.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/genetica/index.js')}}" type="text/javascript"></script>
 @endsection
 
 @section('contenido')
@@ -139,7 +139,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <table id="tabla-rol" class="table table-striped table-bordered table-hover">
+                                    <table id="tabla-genetica" class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <th scope="col">No.</th>
