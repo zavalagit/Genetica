@@ -29,18 +29,24 @@
 
 <header>
     <section class="wrapper">
-        <nav class="navbar navbar-expand flex-column flex-md-row navbar-light bg-light" style="margin-bottom: 0px; padding-bottom: 1px; padding-top: 1px;"> 
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 0px; padding-bottom: 1px; padding-top: 1px;"> 
             <div class="container-fluid">
-                
+
+                <div>
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-left"></i> 
                         <span>Menu</span>
                     </button>
-
-                    {{-- <button type="button" id="sidebarCollapse" class="btn btn-danger" onclick="{{route('logout')}}">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Salir</span>
-                    </button> --}}
+                    @if (session()->get("roles") && count(session()->get("roles")) > 1)
+                        <button type="button" id="sidebarCollapse" class="btn btn-success cambiar-rol">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Roles</span>
+                        </button>
+                    @endif
+                    
+                </div>
+                
+                    
                     
                     
                         <h2>Bienvanido {{session()->get('nombre_usuario') ?? 'Invitado'}}</h2>
@@ -78,6 +84,32 @@
         </div>
             <!-- Dark Overlay element -->
                 <div class="overlay"></div>
+                <!--Inicio de ventana modal para login con más de un rol -->
+                @if(session()->get("roles") && count(session()->get("roles")) > 1)
+                @csrf
+                <div class="modal fade" id="modal-seleccionar-rol" data-rol-set="{{empty(session()->get("rol_id")) ? 'NO' : 'SI'}}" tabindex="-1" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Roles de Usuario</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Cuentas con mas de un Rol en la plataforma, a continuación seleccione con cual de ellos desea trabajar</p>
+                                @foreach(session()->get("roles") as $key => $rol)
+                                    <li>
+                                        <a href="#" class="asignar-rol" data-rolid="{{$rol['id']}}" data-rolnombre="{{$rol["nombre"]}}">
+                                            {{$rol["nombre"]}}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif        
 
     </div>
 

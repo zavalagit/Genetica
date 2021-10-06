@@ -85,6 +85,7 @@ class UsuarioController extends Controller
     {
         if ($request->ajax()) {
             $usuario = Usuario::findOrFail($id);
+            //al no pasarle un identificador le quita todos los roles al usuario el detach
             $usuario->roles()->detach();
             $usuario->delete();
             return response()->json(['mensaje' => 'ok']);

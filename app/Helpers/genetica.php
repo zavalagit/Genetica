@@ -2,6 +2,7 @@
 
 use App\Models\Admin\Permiso;
 
+//activa todas la ventanas del sider
 if (!function_exists('getMenuActivo')) {
     function getMenuActivo($ruta)
     {
@@ -13,6 +14,7 @@ if (!function_exists('getMenuActivo')) {
     }
 }
 
+//no tienes permiso (usuario->rol no tiene permisos tabla permiso-rol) no te deja entrar al link 
 if (!function_exists('canUser')) {
     function can($permiso, $redirect = true)
     {
