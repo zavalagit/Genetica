@@ -22,13 +22,14 @@ $(document).ready(function () {
     })
 
     $('ul.sidebar-menu').find('li.active').parents('li').addClass('active');
-    // Trabajo con Ventana de Roles.
+    // Trabajo con Ventana de Roles muestra la ventana modal.
     console.log('entrasdasd');
     const modal = $('#modal-seleccionar-rol');
     if (modal.length && modal.data('rol-set') == 'NO') {
         modal.modal('show');
     }
 
+    //de la ventana modal asigna el rol que elegiste
     $('.asignar-rol').on('click', function (event) {
         event.preventDefault();
         const data = {
@@ -38,7 +39,7 @@ $(document).ready(function () {
         }
         ajaxRequest(data, '/ajax-sesion', 'asignar-rol');
     });
-
+    //esta funcion cambia de rol al usuario logiado
     $('.cambiar-rol').on('click', function (event) {
         event.preventDefault();
         modal.modal('show');

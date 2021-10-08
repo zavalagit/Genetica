@@ -17,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcomes');
 // });
 
-Route::get('home','GeneticaController@home');
-Route::get('inicio','GeneticaController@inicio');
-Route::get('muestras/{buscar?}','GeneticaController@todas');
-Route::get('kit/{buscar?}','GeneticaController@kit');
+// Route::get('home','GeneticaController@home');
+// Route::get('inicio','GeneticaController@inicio');
+// Route::get('muestras/{buscar?}','GeneticaController@todas');
+// Route::get('kit/{buscar?}','GeneticaController@kit');
 
 //Route::get('admin/permiso', 'Admin\PermisoController@index')->name('permiso');
 
@@ -92,3 +92,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::get('marcador/{id}/editar', 'Genetica\MarcadorController@editar')->name('editar_marcador');
     Route::put('marcador/{id}', 'Genetica\MarcadorController@actualizar')->name('actualizar_marcador');
     Route::delete('marcador/{id}', 'Genetica\MarcadorController@eliminar')->name('eliminar_marcador');
+
+    /*RUTAS DE KIT*/
+    Route::get('kit', 'Genetica\KitController@index')->name('kit');
+    Route::get('kit/crear', 'Genetica\KitController@crear')->name('crear_kit');
+    Route::post('kit', 'Genetica\KitController@guardar')->name('guardar_kit');
+    Route::get('kit/{id}/editar', 'Genetica\KitController@editar')->name('editar_kit');
+    Route::put('kit/{id}', 'Genetica\KitController@actualizar')->name('actualizar_kit');
+    Route::delete('kit/{id}', 'Genetica\KitController@eliminar')->name('eliminar_kit');

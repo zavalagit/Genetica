@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 @section('titulo')
-    Permisos
+    Kits
 @endsection
 
 @section('css')
@@ -40,7 +40,7 @@
         }
 
         /* modificaciones de las tablas */
-        #tabla-permiso{
+        #tabla-genetica{
             width: 100% !important;
         }
         #tabla-valores{
@@ -114,7 +114,7 @@
 @endsection
 
 @section("scripts")
-<script src="{{asset('js/pages/scripts/admin/permiso/index.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/genetica/index.js')}}" type="text/javascript"></script>
 @endsection
 
 @section('contenido')
@@ -129,45 +129,42 @@
                                 <div class="card-header text-center">
                                     <div class="row">
                                         <div class="col-12 col-md-8 text-center">
-                                            @if (count($permisos))
-                                                <h4>LISTADO DE PERMISO<span class="badge badge-warning badge-pill">{{$permisos->count()}}</span></h4>
+                                            @if (count($kits))
+                                                <h4>LISTADO DE KITS<span class="badge badge-warning badge-pill">{{$kits->count()}}</span></h4>
                                             @else
-                                                <h4>LISTADO DE PERMISO<span class="badge badge-warning badge-pill">0</span></h4>
+                                                <h4>LISTADO DE KITS<span class="badge badge-warning badge-pill">0</span></h4>
                                             @endif
                                         </div>
-                                        <div class="col-6 col-md-4"><a href="{{route('crear_permiso')}}" class="btn btn-success float-right">Crear permiso</a></div>
+                                        <div class="col-6 col-md-4"><a href="{{route('crear_kit')}}" class="btn btn-success float-right">Crear Kit</a></div>
                                     </div>
-                                    
                                 </div>
                                 <div class="card-body">
-                                    <table id="tabla-permiso" class="table table-striped table-bordered table-hover">
+                                    <table id="tabla-genetica" class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <th scope="col">No.</th>
                                                 <th scope="col">NOMBRE</th>
-                                                <th scope="col">SLUG</th>
                                                 <th scope="col">ALGO...</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if (count($permisos))
+                                            @if (count($kits))
                                                 @php
                                                 $no = 1;
                                                 @endphp
                     
-                                                    @foreach ($permisos as $key => $permiso)
+                                                    @foreach ($kits as $key => $kit)
                                                         <tr>
                                                             <th class="th-contador" scope="row" width="1.5%">{{$no++}}</th>
-                                                            <td>{{$permiso->nombre}}</td>
-                                                            <td>{{$permiso->slug}}</td>
+                                                            <td>{{$kit->nombre}}</td>
                                                             <td>
                                                                 
-                                                                    <a href="{{route('editar_permiso', ['id' => $permiso->id])}}">
+                                                                    <a href="{{route('editar_kit', ['id' => $kit->id])}}">
                                                                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Editar este registro">
                                                                             <i class="fas fa-edit fa-2x"></i>
                                                                         </span>
                                                                     </a>
-                                                                    <form action="{{route('eliminar_permiso', ['id' => $permiso->id])}}" class="d-inline form-eliminar" method="POST">
+                                                                    <form action="{{route('eliminar_kit', ['id' => $kit->id])}}" class="d-inline form-eliminar" method="POST">
                                                                         @csrf @method("delete")
                                                                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Eliminar este registro">
                                                                             <button type="submit" class="eliminar boton" id="campo" rel="tooltip">
