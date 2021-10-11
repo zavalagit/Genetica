@@ -47,7 +47,7 @@ class MarcadorController extends Controller
     public function guardar(ValidarMarcador $request)
     {
         Marcador::create($request->all());
-        return redirect('marcador/crear')->with('mensaje', 'Permiso creado con exito');
+        return redirect('marcador/crear')->with('mensaje', 'Marcador creado con exito');
     }
 
     /**
@@ -72,7 +72,7 @@ class MarcadorController extends Controller
     public function actualizar(ValidarMarcador $request, $id)
     {
         Marcador::findOrFail($id)->update($request->all());
-        return redirect('marcador')->with('mensaje', 'Permiso actualizado con exito');
+        return redirect('marcador')->with('mensaje', 'Marcador actualizado con exito');
     }
 
     /**
