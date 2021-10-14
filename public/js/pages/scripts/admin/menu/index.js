@@ -4,6 +4,7 @@ $(document).ready(function () {
             menu: window.JSON.stringify($('#nestable').nestable('serialize')),
             _token: $('input[name=_token]').val()
         };
+        console.log(data);
         $.ajax({
             url: '/admin/menu/guardar-orden',
             type: 'POST',

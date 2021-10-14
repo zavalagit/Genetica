@@ -83,6 +83,7 @@ class MenuController extends Controller
 
     public function guardarOrden(Request $request)
     {
+        
         if ($request->ajax()) {
             $menu = new Menu;
             $menu->guardarOrden($request->menu);

@@ -164,6 +164,11 @@
                                                                             <i class="fas fa-edit fa-2x"></i>
                                                                         </span>
                                                                     </a>
+                                                                    <a href="{{route('kit_marcador', ['kit' => $kit])}}">
+                                                                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Agregar Marcadores">
+                                                                            <i class="fas fa-bacteria fa-2x text-primary"></i>
+                                                                        </span>
+                                                                    </a>
                                                                     <form action="{{route('eliminar_kit', ['id' => $kit->id])}}" class="d-inline form-eliminar" method="POST">
                                                                         @csrf @method("delete")
                                                                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Eliminar este registro">

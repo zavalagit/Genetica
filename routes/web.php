@@ -102,5 +102,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::delete('kit/{id}', 'Genetica\KitController@eliminar')->name('eliminar_kit');
 
     /*RUTAS DE KIT_MARCADOR*/
-    Route::get('kit-marcador', 'Genetica\KitMarcadorController@index')->name('kit_marcador');
+    Route::get('kit-marcador/{kit}', 'Genetica\KitMarcadorController@index')->name('kit_marcador');
     Route::post('kit-marcador', 'Genetica\KitMarcadorController@guardar')->name('guardar_kit_marcador');
+    Route::get('ordenar-marcador/{kit}', 'Genetica\KitMarcadorController@ordenar')->name('ordenar_marcadores');
+    Route::post('guardar-orden-marcador', 'Genetica\KitMarcadorController@guardarOrden')->name('guardar_orden_marcadores');

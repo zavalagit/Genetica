@@ -14,14 +14,48 @@ class KitMarcadorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Kit $kit)
     {
         //pluck para armar key->valor
-        $kit = Kit::findOrFail(1);
+        //$kit = Kit::findOrFail($id);
         $marcadores = Marcador::get();
         $KitMarcadores = Marcador::with('kits')->get()->pluck('kits', 'id')->toArray();
+        //dd($KitMarcadores);
         return view('genetica.kit-marcador.index', compact('kit', 'marcadores', 'KitMarcadores'));
         //dd($KitMarcadores);
+    }
+
+    public function ordenar(Kit $kit)
+    {
+        //dd($kit);
+        //buscamos el kit
+       // $kit = Kit::findOrFail($id);
+       
+        //obtenemos por medio del kit todos los marcadores relacionados de la tabla kit_marcadores
+        $KitMarcadores = $kit->marcadores()->orderBy('orden', 'asc')->get();
+        //dd($kit);
+        return view('genetica.kit-marcador.ordenar', compact('kit','KitMarcadores'));
+        //dd($KitMarcadores);
+    }
+
+    public function guardarOrden(Request $request)
+    {
+        
+        //dd($kit);
+        
+        if ($request->ajax()) {
+            $kit = Kit::find($request->input('kit_id'));
+            
+
+            foreach ($request->posicion as $or => $marcador_id){ 
+                $kit->marcadores()->updateExistingPivot($marcador_id, ['orden' => $or]);
+                }
+            
+            return response()->json(['respuesta' => 'ok']);
+           
+        } else {
+            abort(404);
+        }
     }
 
     

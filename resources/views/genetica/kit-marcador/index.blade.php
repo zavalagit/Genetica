@@ -40,7 +40,7 @@
         }
 
         /* modificaciones de las tablas */
-        #tabla-rol{
+        #tabla-genetica{
             width: 100% !important;
         }
         #tabla-valores{
@@ -113,16 +113,15 @@
                         <div class="col-lg-12">
                             @include('includes.mensaje')
                             <div class="card shadow-lg p-3 mb-5 bg-white ">
-                                <div class="card-header text-center">
-                                    @if (count($marcadores))
-                                        <b>LISTADO DE RELACION KIT CON MARCADORES </b><span class="badge badge-warning badge-pill"></span>
-                                    @else
-                                        <b>LISTADO DE RELACION KIT CON MARCADORES </b><span class="badge badge-warning badge-pill">0</span>
-                                    @endif
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-12 col-md-8 text-center"><h4>LISTADO DE RELACION KIT CON MARCADORES</h4></div>
+                                        <div class="col-6 col-md-4"><a href="{{route('ordenar_marcadores', ['kit' => $kit])}}" class="btn btn-success float-right">Ordenar marcadores</a></div>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     @csrf
-                                    <table id="tabla-rol" class="table table-striped table-bordered table-hover">
+                                    <table id="tabla-genetica" class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <th scope="col">No.</th>
