@@ -2,3 +2,8 @@ span.requerido:after{
     content: " *";
     color: #e73d4a
 }
+
+label.requerido:after{
+    content: " *";
+    color: #e73d4a
+}

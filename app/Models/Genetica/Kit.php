@@ -10,7 +10,7 @@ class Kit extends Model
     protected $fillable = ['nombre'];
     protected $guarded = ['id'];
 
-    //relacion de muchos a muchos tabla marcadores con tabla kit
+    //relacion de muchos a muchos tabla intermedia kit_marcadores marcadores con tabla kit
     public function marcadores()
     {
         return $this->belongsToMany(Marcador::class, 'kit_marcador', 'kit_id', 'marcador_id');
