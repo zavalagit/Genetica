@@ -16,11 +16,32 @@
 <div class="col-md-6 mb-3">
                         
   <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text requerido" id="inputGroupPrepend">KIT</span>
-    </div>
-    <input type="text" name="kit" class="form-control" id="kit" value="{{old('kit', $data->kit ?? '')}}"  placeholder="ingrese folio de muestra" required>
-    <div class="valid-feedback">¡Ok válido!</div>
-  <div class="invalid-feedback">Complete el campo.</div>   
+        <div class="input-group-prepend">
+          <span class="input-group-text requerido" id="inputGroupPrepend">KIT</span>
+        </div>
+        <select name="kit_id" id="kit_id" class="form-control" required>
+          <option value="">Seleccione el kit</option>
+            @foreach ($kits as $id=> $nombre)
+            <option value="{{$id}}"
+            {{is_array(old('kit_id')) ? (in_array($id, old('kit_id')) ? 'selected' : '')  : (isset($data) ? ($data->roles->firstWhere('id', $id) ? 'selected' : '') : '')}}
+            >
+            {{$nombre}}</option>
+            @endforeach
+        </select>
   </div>
 </div>
+
+
+@php
+    $formAccion = 'editar';
+@endphp
+
+{{--  {{dd(App\Models\Genetica\Kit::find(1))}}  --}}
+<div class="col-md-12">
+    <div class="lista_marcadores">
+      {{--  aqui se va a mostrar la lista de marcadores  --}}
+      {{--  @if ($formAccion == 'editar')
+        @include('genetica.secuencia.lista_marcadores',['kit' => App\Models\Genetica\Kit::find(1)])
+      @endif    --}}
+    </div>
+</div>   

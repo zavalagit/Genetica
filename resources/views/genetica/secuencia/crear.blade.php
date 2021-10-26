@@ -116,11 +116,60 @@
             .input-group-incorrecto .form-control{
                 border: 3px solid #bb2929;
             }
+
+            /* modificaciones de las tablas */
+        #tabla-genetica{
+            width: 100% !important;
+        }
+        #tabla-valores{
+            /* width: 180% !important; */
+        }
+
+        thead{
+            background-color: #394049 !important;
+            height: 50px !important;
+        }
+
+        th{
+            color:#c09f77;
+            padding: 8px 0 8px 0;
+        }
+        th.th-contador{
+            background-color:#394049 !important;
+            text-align: center;
+  
+        }
+        th,td{
+            padding: 5px 5px !important;
+            /* padding-right: 1px;
+            padding-right: 1px; */
+            border-radius: 0 !important;
+            text-align: center;
+            
+        }
+        .thcolorborde{
+            border: lightgoldenrodyellow 2px solid;
+        }
+
+        .tdcolorborde{
+            border: lightcoral 2px solid;
+        }
+        .trcolorborde{
+            border: black 3px solid;
+            border-bottom: 3px solid black;
+        }
+
+        .colorcol{
+            color:#c10f77;
+            border-bottom: 1px solid #f48fb1;
+        }
     </style>
 @endsection
 
 @section("scripts")
 <script src="{{asset('js/genetica/formulario.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/genetica/lista_marcador.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/genetica/clonar_input.js')}}" type="text/javascript"></script>
 @endsection
 
 @section('contenido')

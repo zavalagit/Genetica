@@ -111,3 +111,4 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::get('secuencia', 'Genetica\SecuenciValorController@index')->name('secuencia');
     Route::get('secuencia/crear', 'Genetica\SecuenciValorController@crear')->name('crear_secuencia');
     Route::post('secuencia', 'Genetica\SecuenciValorController@guardar')->name('guardar_secuencia');
+    Route::post('consultar-lista-marcadores', 'Genetica\SecuenciValorController@ListaMarcadores')->name('consultar_lista_marcadores');
