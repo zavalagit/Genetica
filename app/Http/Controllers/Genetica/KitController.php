@@ -39,6 +39,7 @@ class KitController extends Controller
      */
     public function guardar(ValidarKit $request)
     {
+        //dd($request->all());
         Kit::create($request->all());
         return redirect('kit/crear')->with('mensaje', 'Kit creado con exito');
     }

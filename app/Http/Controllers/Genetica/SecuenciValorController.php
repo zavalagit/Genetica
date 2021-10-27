@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Genetica;
 
 use App\Http\Controllers\Controller;
 use App\Models\Genetica\Kit;
+use App\Models\Genetica\Secuenciavalor;
 use App\Models\Genetica\Str;
 use Illuminate\Http\Request;
 
@@ -38,6 +39,7 @@ class SecuenciValorController extends Controller
         
         if ($request->ajax()) {
             //$kit = Kit::find($request->input('kit_id'));
+            //manda el listado de marcadores que corresponden al id del kit y ordenado por la tabla kit_marcadores
             $listamarcadores = Kit::find($request->input('kit_id'))->marcadores()->orderBy('orden', 'asc')->get();
             return view('genetica.secuencia.lista_marcadores', compact('listamarcadores'));
 
@@ -60,7 +62,36 @@ class SecuenciValorController extends Controller
      */
     public function guardar(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            //guardar en tabla strs
+            $str = new Str;
+            $str->folio = $request->folio;
+            $str->kit_id = $request->kit_id;
+            $str->save();
+            
+            //guardar en tabla secuenciasvalores
+            for ($i=0; $i < count($request->valor); $i++) {
+                for ($j=1; $j <= count($request->valor[array_keys($request->valor)[$i]]); $j++) {
+                    $secuencia = new Secuenciavalor;
+                    $secuencia->str_id = $str->id;
+                    $secuencia->marcador_id = array_keys($request->valor)[$i];
+                    $secuencia->valor = $request->valor[array_keys($request->valor)[$i]][$j];
+                    $secuencia->save();
+                 }
+             }
+            //total de marcadores = 16
+            //count($request->input('valor')
+            //total de valores dentro del marcador 10
+            //count($request->valor['10'])
+            //para optener todos los indicios -> [10, 2, 18, 17, 25, 12, 13, 14, 16, 4, 24, 5, 15, 3, 11, 29]
+            //array_keys($request->valor)[1] da el indicio
+            
+            return response()->json(['mensaje' => 'ok']);
+           
+        } else {
+            abort(404);
+        }
+    
     }
 
     /**

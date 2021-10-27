@@ -1,5 +1,6 @@
 const formulario = document.getElementById('form-general');
 const inputs = document.querySelectorAll('#form-general input');
+var form = $('#form-general');
 
 const expresiones = {
 	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -76,6 +77,24 @@ formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
 
 	if (campos.folio) {
+		console.log(form);
+		$.ajax({
+            url: '/secuencia',
+            type: 'POST',
+            data: form.serialize(),
+            success: function (respuesta) {
+                 //console.log(respuesta.respuesta);
+                if (respuesta.mensaje == "ok") {
+                    Genetica.notificaciones('El registro creado con exito', 'success');
+                } else {
+                    Genetica.notificaciones('No se puede crear el registro ', 'error');
+                }
+
+            },
+            error: function () {
+
+            }
+        });
 		formulario.reset();
 
 		document.querySelectorAll('.input-group-correcto').forEach((icono) => {
