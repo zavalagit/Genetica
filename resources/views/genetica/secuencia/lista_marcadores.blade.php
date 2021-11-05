@@ -16,28 +16,54 @@
                 @endphp
 
                     @foreach ($listamarcadores as $key => $marcador)
-                        <tr>
-                            <th class="th-contador" scope="row" width="1.5%">{{$no++}}</th>
-                            <td>{{$marcador->nombre}}</td>
-                            <td class={{ $marcador->id }}>
-                                <label for="Input">Campo</label>
-                                    <button type="button" data-id={{$marcador->id}} class="clonar btn btn-secondary btn-sm">+</button>
-                                <div class="input-group" id="grupo__valor">
-                                    <div class="input-group-prepend">
-                                    <label for="valor" class="input-group-text requerido formulario__label" id="inputGroupPrepend">VALOR</label>
-                                    </div>
+
+                        @if (isset($accion))
+                                <tr>
+                                    <th class="th-contador" scope="row" width="1.5%">{{$no++}}</th>
+                                    <!--nombre-->
+                                    <td>{{$marcador->nombre}}</td>
+                                    <!--input-->
+                                    <td class={{ $marcador->id }}>
+                                        <label for="Input">Campo</label>
+                                            <button type="button" data-id={{$marcador->id}} class="clonar btn btn-secondary btn-sm">+</button>
+                                                    @if (count($str->valores->where('marcador_id',$marcador->id)) > 1)
+                                                    @php
+                                                        $num = 1;
+                                                    @endphp
+                                                        @foreach ($str->valores->where('marcador_id',$marcador->id) as $valor)
+                                                                @include('genetica.secuencia.input',['marcador_id' => $marcador->id, 'numero' => $num++, 'valor' => $valor->valor])
+                                                        @endforeach
+                                                    @else
+                                                    @foreach ($str->valores->where('marcador_id',$marcador->id) as $valor)
+                                                            @include('genetica.secuencia.input',['marcador_id' => $marcador->id, 'numero' => 1, 'valor' => $valor->valor])
+                                                    @endforeach
+                                                       
+                                                        
+                                                    @endif
+                                                   
+                                    </td>
                                     
-                                        <input type="text" name="valor[{{$marcador->id}}][1]" class="form-control" id="valor" value="{{old('folio', $data->folio ?? '')}}"  placeholder="ingrese valor del marcador" required>
-                                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                                    
-                                    <div class="formulario__input-error">el folio esta compuesto por numero consecutivo  diagonal / año actual guion - letra G, Q ó siclas EXT.</div>
-                                    <div class="invalid-feedback">Complete el campo.</div>  
-                                </div>   
-                                
-                                
-                            </td>
+                                </tr>
                             
-                        </tr>
+                        @else
+                                <tr>
+                                    <th class="th-contador" scope="row" width="1.5%">{{$no++}}</th>
+                                    <td>{{$marcador->nombre}}</td>
+                                    <td class={{ $marcador->id }}>
+                                        <label for="Input">Campo</label>
+                                            <button type="button" data-id={{$marcador->id}} class="clonar btn btn-secondary btn-sm">+</button>
+                                            
+                                                <div class="input-group" id="grupo__valor">
+                                                            @include('genetica.secuencia.input',['marcador_id' => $marcador->id, 'numero' => 1]) 
+                                                </div>   
+                                           
+                                    </td>
+                                    
+                                </tr>
+                            
+                        @endif
+                    
+                        
                     @endforeach
             @else
                     <tr class="table-warning">

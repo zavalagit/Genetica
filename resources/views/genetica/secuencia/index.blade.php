@@ -158,18 +158,19 @@
                                                         <tr>
                                                             <th class="th-contador" scope="row" width="1.5%">{{$no++}}</th>
                                                             <td>{{$muestra->folio}}</td>
+                                                            <td>'lista de marcadores'</td>
                                                             <td>
                                                                 
-                                                                    <a href="{{route('editar_kit', ['id' => $muestra->id])}}">
+                                                                    <a href="{{route('editar_secuencia', ['id' => $muestra->id])}}">
                                                                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Editar este registro">
                                                                             <i class="fas fa-edit fa-2x"></i>
                                                                         </span>
                                                                     </a>
-                                                                    <a href="{{route('kit_marcador', ['kit' => $muestra])}}">
+                                                                    {{--  <a href="{{route('kit_marcador', ['kit' => $muestra])}}">
                                                                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Agregar Marcadores">
                                                                             <i class="fas fa-bacteria fa-2x text-primary"></i>
                                                                         </span>
-                                                                    </a>
+                                                                    </a>  --}}
                                                                     <form action="{{route('eliminar_kit', ['id' => $muestra->id])}}" class="d-inline form-eliminar" method="POST">
                                                                         @csrf @method("delete")
                                                                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Eliminar este registro">

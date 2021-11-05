@@ -28,10 +28,12 @@ class SecuenciValorController extends Controller
      */
     public function crear()
     {
+        $accion = 'registrar';
         $kits=Kit::orderBy('id')->pluck('nombre', 'id')->toArray();
-        return view('genetica.secuencia.crear', compact('kits'));
+        return view('genetica.secuencia.crear', compact('kits', 'accion'));
     }
 
+    //listado de marcadores
     public function ListaMarcadores(Request $request)
     {
         
@@ -53,6 +55,29 @@ class SecuenciValorController extends Controller
             abort(404);
         }
     }
+
+    //agrega un Input para ingresar valor al marcador
+    public function AgregarInput(Request $request)
+    {
+        
+        //dd($kit);
+        
+        if ($request->ajax()) {
+            
+            //$listamarcadores = Kit::find($request->input('kit_id'))->marcadores()->orderBy('orden', 'asc')->get();
+            $marcador_id = $request->marcador_id;
+            $numero = $request->numero;
+            return view('genetica.secuencia.input', compact('marcador_id', 'numero'));
+
+            
+            
+            return response()->json(['respuesta' => $request->numero]);
+           
+        } else {
+            abort(404);
+        }
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -94,48 +119,22 @@ class SecuenciValorController extends Controller
     
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    //manda valores a la vista para poder editar
+    public function editar($id, $accion = 'editar')
     {
-        //
+        //dd($accion);
+        // $kits=Kit::orderBy('id')->pluck('nombre', 'id')->toArray();
+        // $data = Str::findOrFail($id);
+        //return view('genetica.secuencia.editar', compact('data', 'kits', 'accion'));
+
+        // dd( Str::findOrFail($id) );
+        return view('genetica.secuencia.editar',[
+            'str' => Str::findOrFail($id),
+            'kits' => Kit::orderBy('id')->pluck('nombre', 'id')->toArray(),
+            'accion' => $accion,
+        ]);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

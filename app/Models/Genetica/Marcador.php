@@ -15,4 +15,10 @@ class Marcador extends Model
     {
         return $this->belongsToMany(Kit::class, 'kit_marcador', 'marcador_id', 'kit_id');
     }
+
+    //uno a muchos secuenciavalor
+    public function valores()
+    {
+        return $this->hasMany(Secuenciavalor::class,'marcador_id');
+    }
 }

@@ -5,7 +5,7 @@
         <label for="folio" class="input-group-text requerido formulario__label" id="inputGroupPrepend">FOLIO</label>
       </div>
         
-          <input type="text" name="folio" class="form-control" id="folio" value="{{old('folio', $data->folio ?? '')}}"  placeholder="ingrese folio de muestra" required>
+          <input type="text" name="folio" class="form-control" id="folio" value="{{old('folio', $str->folio ?? '')}}"  placeholder="ingrese folio de muestra" required>
           <i class="formulario__validacion-estado fas fa-times-circle"></i>
         
       <div class="formulario__input-error">el folio esta compuesto por numero consecutivo  diagonal / año actual guion - letra G, Q ó siclas EXT.</div>
@@ -23,7 +23,8 @@
           <option value="">Seleccione el kit</option>
             @foreach ($kits as $id=> $nombre)
             <option value="{{$id}}"
-            {{is_array(old('kit_id')) ? (in_array($id, old('kit_id')) ? 'selected' : '')  : (isset($data) ? ($data->roles->firstWhere('id', $id) ? 'selected' : '') : '')}}
+            {{--  {{is_array(old('kit_id')) ? (in_array($id, old('kit_id')) ? 'selected' : '')  : (isset($data) ? ($data->firstWhere('id', $id) ? 'selected' : '') : '')}}  --}}
+            {{($id == $str->kit_id ? 'selected' : '')}}
             >
             {{$nombre}}</option>
             @endforeach
@@ -32,16 +33,15 @@
 </div>
 
 
-@php
-    $formAccion = 'editar';
-@endphp
+
 
 {{--  {{dd(App\Models\Genetica\Kit::find(1))}}  --}}
 <div class="col-md-12">
     <div class="lista_marcadores">
       {{--  aqui se va a mostrar la lista de marcadores  --}}
-      {{--  @if ($formAccion == 'editar')
-        @include('genetica.secuencia.lista_marcadores',['kit' => App\Models\Genetica\Kit::find(1)])
-      @endif    --}}
+       @if ($accion == 'editar') 
+        {{--  @include('genetica.secuencia.lista_marcadores',['listamarcadores' => App\Models\Genetica\Kit::find($data->kit_id)->marcadores()->orderBy('orden', 'asc')->get()])  --}}
+         @include('genetica.secuencia.lista_marcadores',['listamarcadores' => $str->kit->marcadores, 'accion' => $accion]) 
+       @endif   
     </div>
 </div>   

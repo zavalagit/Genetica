@@ -13,6 +13,6 @@ class Kit extends Model
     //relacion de muchos a muchos tabla intermedia kit_marcadores marcadores con tabla kit
     public function marcadores()
     {
-        return $this->belongsToMany(Marcador::class, 'kit_marcador', 'kit_id', 'marcador_id')->withPivot('id', 'orden');
+        return $this->belongsToMany(Marcador::class, 'kit_marcador', 'kit_id', 'marcador_id')->withPivot('id', 'orden')->orderBy('orden');
     }
 }

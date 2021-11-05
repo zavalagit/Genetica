@@ -3,34 +3,43 @@ var campos_max          = 10;   //max de 10 campos
 $(document).on('click',".clonar",function(e){
     e.preventDefault();
     const marcador_id = $(this).attr('data-id');
-    const numero = $('.'+marcador_id+ '> #grupo__valor.input-group').length + 1; 
-    //console.log(marcador_id);
-    if (numero < campos_max) {
-        
-            $('.'+marcador_id).append(
-                '<div class="input-group" id="grupo__valor">\
-                                    <div class="input-group-prepend">\
-                                    <label for="valor" class="input-group-text requerido formulario__label" id="inputGroupPrepend">VALOR</label>\
-                                    </div>\
-                                     <input type="text" name="valor['+marcador_id+']['+numero+']" class="form-control"  placeholder="ingrese valor del marcador" required>\
-                                        <a href="#" data-id="'+marcador_id+'" class="remover_campo"><i class="fas fa-times-circle fa-lg text-danger" ></i></a>\
-                                        <div class="invalid-feedback">Complete el campo.</div> </div>');
-           
-    }
-    //$(`.marcador_id`).append();
-    //console.log(numero);
+    const data = {
+        _token: $('input[name=_token]').val(),
+        marcador_id: $(this).attr('data-id'),
+        numero: $('.'+marcador_id+ '> #grupo__valor.input-group').length + 1
+    };
     
+    //console.log(data);
+    
+    $.ajax({
+        url: '/agregar-input',
+        type: 'POST',
+        data: data,
+        success: function (respuesta) {
+            //console.log(respuesta);
+
+            $('.'+marcador_id).append(respuesta);
+            // if (respuesta.respuesta == "ok") {
+            //     Genetica.notificaciones("Cambio de posicion de marcador", 'success');
+            // } else {
+            //     Genetica.notificaciones("Error de posicion", 'error');
+            // }  
+        }
+    });
+
     
  });
 
  //guncion para eliminar
  $(document).on("click",".remover_campo",function(e) {
                 e.preventDefault();
+                
                 //var index = $(this).index();
                 //const marcador_id = $('#grupo__valor.input-group').parents('.remover_campo');
                 const marcador_id = $(this).attr('data-id');
                // var listItem = $( ".remover_campo" );
                // saca la posicion del boton remover_campo
+               console.log(marcador_id);
                 let posicion_eliminar = $('.'+marcador_id+ '> #grupo__valor.input-group > .remover_campo').index(this) + 1;
                 //var input_name = document.querySelector('#grupo__valor.input-group input[name="valor['+marcador_id+']['+posicion_eliminar+']"]').name;
                 //saca el total de los inputs menos 1
