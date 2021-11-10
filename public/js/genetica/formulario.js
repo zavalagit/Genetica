@@ -1,6 +1,12 @@
 const formulario = document.getElementById('form-general');
 const inputs = document.querySelectorAll('#form-general input');
+const buttons = document.querySelectorAll('#form-general button');
 var form = $('#form-general');
+
+
+// console.log(formulario);
+ console.log(form);
+// console.log(buttons);
 
 const expresiones = {
 	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -44,6 +50,82 @@ const validarFormulario = (e) =>{
 	}
 }
 
+//funcion para enviar los datos a controlador de guardar o actualizar
+const EnviarFormulario = (e) =>{
+	
+	switch (e.target.id){
+		case "guardar":
+			console.log(e.target.id);
+				if (campos.folio) {
+					//console.log(form);
+					$.ajax({
+				        url: '/secuencia',
+				        type: 'POST',
+				        data: form.serialize(),
+				        success: function (respuesta) {
+				             console.log(respuesta.mensaje);
+				            if (respuesta.mensaje == "ok") {
+				                Genetica.notificaciones('El registro creado con exito', 'success');
+									formulario.reset();
+									//borra el icono
+									document.querySelectorAll('.input-group-correcto').forEach((icono) => {
+										icono.classList.remove('input-group-correcto');
+									});
+				            } else {
+				                Genetica.notificaciones('No se puede crear el registro ', 'error');
+				            }
+
+				        },
+				        error: function (respuesta) {
+							console.log(respuesta.status);
+							document.getElementById('grupo__folio').classList.remove('input-group-correcto');
+							document.getElementById('grupo__folio').classList.add('input-group-incorrecto');
+							document.querySelector('#grupo__folio i').classList.remove('fa-check-circle');
+							let firstkey = Object.keys(respuesta.responseJSON.errors)[0];
+							console.log(respuesta.responseJSON.errors[firstkey][0]);	
+							Genetica.notificaciones(respuesta.responseJSON.errors[firstkey][0], 'error');
+				        }
+				    });
+					
+				}
+		break;
+		case "actualizar":
+			console.log(e.target.id);
+			if (campos.folio) {
+				const str_id = $('input[name=str]').val();
+				//console.log(str_id);
+				$.ajax({
+					url: '/secuencia/'+str_id,
+					type: 'PUT',
+					data: form.serialize(),
+					success: function (respuesta) {
+						 console.log(respuesta.mensaje);
+						 if (respuesta.mensaje == "ok") {
+							Genetica.notificaciones('El registro se actualizon con exito', 'success');
+
+						} else {
+							Genetica.notificaciones('No se puedo actuaizar', 'error');
+						}
+						
+						setTimeout(function(){
+							//location.reload();
+							var url_back =  document.referrer;
+              				window.location = url_back;
+						 },1500);
+
+					},
+					error: function (respuesta) {
+						console.log(respuesta.status);
+						
+					}
+				});
+				
+				
+			}
+		break;
+	}
+}
+
 //esta funcion es para validar el input que se esta trabajando
 // const validarCampo = (expresion, input, campo) =>{
 // 	if (expresion.test(input.value)) {
@@ -72,34 +154,53 @@ inputs.forEach((input) => {
 	input.addEventListener('blur', validarFormulario);
 });
 
+//esta funcion me dice que boton click gurdar o editar
+	buttons.forEach((button) => {
+		//cuando le das click a un boton
+		button.addEventListener('click', EnviarFormulario);
+		
+	});
+
+
+
+//parar el envio de formulario
 formulario.addEventListener('submit', (e) => {
-	//parar el envio de formulario
+
+	
 	e.preventDefault();
+	//console.log('enviar');
 
-	if (campos.folio) {
-		console.log(form);
-		$.ajax({
-            url: '/secuencia',
-            type: 'POST',
-            data: form.serialize(),
-            success: function (respuesta) {
-                 //console.log(respuesta.respuesta);
-                if (respuesta.mensaje == "ok") {
-                    Genetica.notificaciones('El registro creado con exito', 'success');
-                } else {
-                    Genetica.notificaciones('No se puede crear el registro ', 'error');
-                }
+	// if (campos.folio) {
+	// 	//console.log(form);
+	// 	$.ajax({
+    //         url: '/secuencia',
+    //         type: 'POST',
+    //         data: form.serialize(),
+    //         success: function (respuesta) {
+    //              console.log(respuesta.mensaje);
+    //             if (respuesta.mensaje == "ok") {
+    //                 Genetica.notificaciones('El registro creado con exito', 'success');
+	// 					formulario.reset();
+	// 					//borra el icono
+	// 					document.querySelectorAll('.input-group-correcto').forEach((icono) => {
+	// 						icono.classList.remove('input-group-correcto');
+	// 					});
+    //             } else {
+    //                 Genetica.notificaciones('No se puede crear el registro ', 'error');
+    //             }
 
-            },
-            error: function () {
-
-            }
-        });
-		formulario.reset();
-
-		document.querySelectorAll('.input-group-correcto').forEach((icono) => {
-			icono.classList.remove('input-group-correcto');
-		});
-	}
+    //         },
+    //         error: function (respuesta) {
+	// 			console.log(respuesta.status);
+	// 			document.getElementById('grupo__folio').classList.remove('input-group-correcto');
+	// 			document.getElementById('grupo__folio').classList.add('input-group-incorrecto');
+	// 			document.querySelector('#grupo__folio i').classList.remove('fa-check-circle');
+	// 			let firstkey = Object.keys(respuesta.responseJSON.errors)[0];
+	// 			console.log(respuesta.responseJSON.errors[firstkey][0]);	
+	// 			Genetica.notificaciones(respuesta.responseJSON.errors[firstkey][0], 'error');
+    //         }
+    //     });
+		
+	// }
 
 });

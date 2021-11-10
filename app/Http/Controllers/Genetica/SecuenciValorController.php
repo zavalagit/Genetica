@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Genetica;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidarValor;
 use App\Models\Genetica\Kit;
 use App\Models\Genetica\Secuenciavalor;
 use App\Models\Genetica\Str;
@@ -85,8 +86,10 @@ class SecuenciValorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $request)
+    public function guardar(ValidarValor $request)
     {
+       
+        
         if ($request->ajax()) {
             //guardar en tabla strs
             $str = new Str;
@@ -114,7 +117,40 @@ class SecuenciValorController extends Controller
             return response()->json(['mensaje' => 'ok']);
            
         } else {
-            abort(404);
+            return response()->json(['mensaje' => 'ng']);
+        }
+    
+    }
+
+    public function actualizar(ValidarValor $request, $id)
+    {
+        //return response()->json(['mensaje' => $request->kit_id]);
+            
+        if ($request->ajax()) {
+            if (Str::destroy($id)) {
+                        //guardar en tabla strs
+                        $str = new Str;
+                        $str->folio = $request->folio;
+                        $str->kit_id = $request->kit_id;
+                        $str->save();
+            
+                        //guardar en tabla secuenciasvalores
+                        for ($i=0; $i < count($request->valor); $i++) {
+                            for ($j=1; $j <= count($request->valor[array_keys($request->valor)[$i]]); $j++) {
+                                $secuencia = new Secuenciavalor;
+                                $secuencia->str_id = $str->id;
+                                $secuencia->marcador_id = array_keys($request->valor)[$i];
+                                $secuencia->valor = $request->valor[array_keys($request->valor)[$i]][$j];
+                                $secuencia->save();
+                            }
+                        }
+                return response()->json(['mensaje' => 'ok']);
+            } else {
+                return response()->json(['mensaje' => 'ng']);
+            }
+           
+        } else {
+            return response()->json(['mensaje' => 'ng']);
         }
     
     }

@@ -4,8 +4,8 @@
       <div class="input-group-prepend">
         <label for="folio" class="input-group-text requerido formulario__label" id="inputGroupPrepend">FOLIO</label>
       </div>
-        
-          <input type="text" name="folio" class="form-control" id="folio" value="{{old('folio', $str->folio ?? '')}}"  placeholder="ingrese folio de muestra" required>
+          
+          <input type="text" name="folio" class="form-control" id="folio" value="{{old('folio', $str->folio ?? '')}}"  placeholder="ingrese folio de muestra" required autofocus>
           <i class="formulario__validacion-estado fas fa-times-circle"></i>
         
       <div class="formulario__input-error">el folio esta compuesto por numero consecutivo  diagonal / año actual guion - letra G, Q ó siclas EXT.</div>
@@ -19,16 +19,23 @@
         <div class="input-group-prepend">
           <span class="input-group-text requerido" id="inputGroupPrepend">KIT</span>
         </div>
+        @if ($accion == 'editar')
+        <input type="hidden" value="{{ $str->kit->id }}" name="kit_id" /> 
+        <input type="text" name="kit_id" class="form-control" id="kit_id" value="{{$str->kit->nombre}}" disabled>
+        
+        @else
         <select name="kit_id" id="kit_id" class="form-control" required>
           <option value="">Seleccione el kit</option>
             @foreach ($kits as $id=> $nombre)
             <option value="{{$id}}"
-            {{--  {{is_array(old('kit_id')) ? (in_array($id, old('kit_id')) ? 'selected' : '')  : (isset($data) ? ($data->firstWhere('id', $id) ? 'selected' : '') : '')}}  --}}
-            {{($id == $str->kit_id ? 'selected' : '')}}
+            {{is_array(old('kit_id')) ? (in_array($id, old('kit_id')) ? 'selected' : '')  : (isset($str) ? ($str->firstWhere('id', $id) ? 'selected' : '') : '')}}
+            {{--  {{($id == $str->kit_id ? 'selected' : '')}}  --}}
             >
             {{$nombre}}</option>
             @endforeach
-        </select>
+        </select> 
+        @endif
+        
   </div>
 </div>
 

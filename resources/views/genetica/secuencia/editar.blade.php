@@ -168,6 +168,7 @@
 
 @section("scripts")
 <script src="{{asset('js/genetica/formulario.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/genetica/lista_marcador.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/genetica/clonar_input.js')}}" type="text/javascript"></script>
 @endsection
 
@@ -189,7 +190,8 @@
                     </div>
                     <div class="card-body">
                             <form action="{{route('actualizar_secuencia', ['id' => $str])}}" id="form-general" class="needs-validation formulario" method="POST" autocomplete="off">
-                            @csrf
+                            @csrf @method("put")
+                            <input type="hidden" name="str" value="{{ $str->id }}">
                             <div class="form-row">
                             
                                     @include('genetica.secuencia.form')
