@@ -82,5 +82,32 @@ class KitMarcadorController extends Controller
         }
     }
 
+
+    //buscar marcador
+    public function BuscarMarcador(Request $request)
+    {
+        
+        //return response()->json(['respuesta' => $request->input('kit_id')]);
+        
+        if ($request->ajax()) {
+            $marcadores = Marcador::where('nombre','like',"%{$request->input('search')}%")->get();
+            $kit = Kit::findOrFail($request->input('kit_id'));
+            $KitMarcadores = Marcador::with('kits')->get()->pluck('kits', 'id')->toArray();
+            //$kit = Kit::find($request->input('kit_id'));
+            //manda el listado de marcadores que corresponden al id del kit y ordenado por la tabla kit_marcadores
+            //$listamarcadores = Kit::find($request->input('kit_id'))->marcadores()->orderBy('orden', 'asc')->get();
+            return view('genetica.kit-marcador.tabla_marcadores', compact('marcadores', 'kit', 'KitMarcadores'));
+
+            // foreach ($request->posicion as $or => $marcador_id){ 
+            //     $kit->marcadores()->updateExistingPivot($marcador_id, ['orden' => $or]);
+            //     }
+            
+            //return response()->json(['respuesta' => $kit]);
+           
+        } else {
+            abort(404);
+        }
+    }
+
     
 }

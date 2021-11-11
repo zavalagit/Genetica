@@ -13,6 +13,7 @@
         .btn {
             margin-left: 10px;
             margin-right: 10px;
+           
         }
 
         .btn-primary {
@@ -26,6 +27,7 @@
             background: transparent;
             transition: all 0.3s ease 0s;
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            
         }
         .btn-primary:hover {
             color: #FFF;
@@ -102,11 +104,12 @@
 
 @section("scripts")
 <script src="{{asset('js/genetica/kitmarcadores.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/genetica/buscar_marcador.js')}}" type="text/javascript"></script>
 @endsection
 
 @section('contenido')
 
-
+                <meta name="csrf-token" content="{{ csrf_token() }}">
                 <div style="height: 50px;"></div>
                 <div class="container">
                     <div class="row">
@@ -115,56 +118,17 @@
                             <div class="card shadow-lg p-3 mb-5 bg-white ">
                                 <div class="card-header">
                                     <div class="row">
-                                        <div class="col-12 col-md-8 text-center"><h4>LISTADO DE RELACION KIT CON MARCADORES</h4></div>
-                                        <div class="col-6 col-md-4"><a href="{{route('ordenar_marcadores', ['kit' => $kit])}}" class="btn btn-success float-right">Ordenar marcadores</a></div>
+                                        <div class="col-12 col-md-6 text-center"><h4>LISTADO DE RELACION KIT CON MARCADORES</h4></div>
+                                        
+                                        <div class="col-6 col-md-3"><a href="{{route('ordenar_marcadores', ['kit' => $kit])}}" class="btn btn-success float-right">Ordenar Marcadores</a></div>
+                                        <div class="col-6 col-md-3"><input class="form-control mr-sm-2" type="search" name="search" id="search" placeholder="Buscar Marcador" aria-label="Search"></div>
+                                        <input type="hidden" name="kit" value="{{ $kit->id }}">
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    @csrf
-                                    <table id="tabla-genetica" class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">No.</th>
-                                                <th scope="col">Marcadores</th>
-                                                <th scope="col" class="text-center">{{$kit->nombre}}</th>
-                                                
-                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @if (count($marcadores))
-                                                @php
-                                                $no = 1;
-                                                @endphp
-                    
-                                                        @foreach ($marcadores as $key => $marcador)
-                                                            
-                                                            <tr>
-                                                                <th class="th-contador" scope="row" width="1.5%">{{$no++}}</th>
-                                                                <td class="font-weight-bold"></i> {{$marcador["nombre"]}}</td>
-                                                                
-                                                                    <td class="text-center">
-                                                                        <input
-                                                                        type="checkbox"
-                                                                        class="kit_marcador"
-                                                                        name="kit_marcador[]"
-                                                                        data-marcadorid={{$marcador[ "id"]}}
-                                                                        value="{{$kit->id}}" {{in_array($kit->id, array_column($KitMarcadores[$marcador["id"]], "id"))? "checked" : ""}}>
-                                                                    </td>
-                                                                
-                                                            </tr>
-                                                        @endforeach
-                                                        
-                                            @else
-                                                    <tr class="table-warning">
-                                                        <td colspan="12">
-                                                            <blockquote>No hay registros</blockquote>
-                                                        </td>
-                                                    </tr>
-                                            @endif
-                    
-                                        </tbody>
-                                    </table> 
+                                <div class="card-body mostrar_tabla_marcadores">
+                                    
+                                    @include('genetica.kit-marcador.tabla_marcadores',['kit' => $kit, 'marcadores' => $marcadores, 'KitMarcadores' => $KitMarcadores])
+                                    
                                 </div>   
                             </div>
                         </div>       

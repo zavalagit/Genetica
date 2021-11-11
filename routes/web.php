@@ -106,6 +106,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::post('kit-marcador', 'Genetica\KitMarcadorController@guardar')->name('guardar_kit_marcador');
     Route::get('ordenar-marcador/{kit}', 'Genetica\KitMarcadorController@ordenar')->name('ordenar_marcadores');
     Route::post('guardar-orden-marcador', 'Genetica\KitMarcadorController@guardarOrden')->name('guardar_orden_marcadores');
+    //buscar marcador
+    Route::post('buscar-marcadores', 'Genetica\KitMarcadorController@BuscarMarcador')->name('buscar_marcador');
 
     /*RUTAS PARA LE SECUENCIAS*/
     Route::get('secuencia', 'Genetica\SecuenciValorController@index')->name('secuencia');

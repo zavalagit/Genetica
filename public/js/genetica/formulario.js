@@ -108,7 +108,9 @@ const EnviarFormulario = (e) =>{
 						}
 						
 						setTimeout(function(){
+							//recargar la misma pagina
 							//location.reload();
+							//regresar a la pagina anterior
 							var url_back =  document.referrer;
               				window.location = url_back;
 						 },1500);
