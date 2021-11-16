@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 @section('titulo')
-    Muestra
+    Coincidencias
 @endsection
 
 @section('css')
@@ -114,7 +114,7 @@
 @endsection
 
 @section("scripts")
-<script src="{{asset('js/genetica/index.js')}}" type="text/javascript"></script>
+{{-- <script src="{{asset('js/genetica/index.js')}}" type="text/javascript"></script> --}}
 @endsection
 
 @section('contenido')
@@ -129,13 +129,13 @@
                                 <div class="card-header text-center">
                                     <div class="row">
                                         <div class="col-12 col-md-8 text-center">
-                                            @if (count($muestras))
-                                                <h4>LISTADO DE MUESTRAS<span class="badge badge-warning badge-pill">{{$muestras->count()}}</span></h4>
+                                            @if (false)
+                                                <h4>LISTADO DE COINCIDENCIAS<span class="badge badge-warning badge-pill"></span></h4>
                                             @else
-                                                <h4>LISTADO DE MUESTRAS<span class="badge badge-warning badge-pill">0</span></h4>
+                                                <h4>LISTADO DE COINCIDENCIAS<span class="badge badge-warning badge-pill">0</span></h4>
                                             @endif
                                         </div>
-                                        <div class="col-6 col-md-4"><a href="{{route('crear_secuencia')}}" class="btn btn-success float-right">Crear Secuencia</a></div>
+                                        <div class="col-6 col-md-4"><a href="{{route('secuencia')}}" class="btn btn-success float-right">Listado</a></div>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -144,41 +144,24 @@
                                             <tr>
                                                 <th scope="col">No.</th>
                                                 <th scope="col">FOLIO</th>
-                                                <th scope="col">SECUENCIA</th>
+                                                <th scope="col">HIST</th>
                                                 <th scope="col">ALGO...</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if (count($muestras))
+                                            @if (count($resultado_busqueda))
                                                 @php
                                                 $no = 1;
                                                 @endphp
                     
-                                                    @foreach ($muestras as $key => $muestra)
+                                                    @foreach ($resultado_busqueda as $str_id => $hits)
                                                         <tr>
                                                             <th class="th-contador" scope="row" width="1.5%">{{$no++}}</th>
-                                                            <td>{{$muestra->folio}}</td>
-                                                            <td>'lista de marcadores'</td>
+                                                            <td>{{App\Models\Genetica\Str::find($str_id)->folio}}</td>
+                                                            <td>{{$hits}}</td>
                                                             <td>
                                                                 
-                                                                    <a href="{{route('editar_secuencia', ['id' => $muestra->id])}}">
-                                                                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Editar este registro">
-                                                                            <i class="fas fa-edit fa-2x"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                     <a href="{{route('coincidencia', ['id' => $muestra->id])}}">
-                                                                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Buscar coincidencias">
-                                                                            <i class="fas fa-street-view fa-2x text-primary"></i>
-                                                                        </span>
-                                                                    </a> 
-                                                                    <form action="{{route('eliminar_kit', ['id' => $muestra->id])}}" class="d-inline form-eliminar" method="POST">
-                                                                        @csrf @method("delete")
-                                                                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Eliminar este registro">
-                                                                            <button type="submit" class="eliminar boton" id="campo" rel="tooltip">
-                                                                                <i class="fas fa-trash-alt fa-2x text-danger"></i>
-                                                                            </button>
-                                                                        </span>
-                                                                    </form>
+                                                                'BOX'    
                                                                 
                                                                 
                                                             </td>

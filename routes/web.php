@@ -117,3 +117,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::post('agregar-input', 'Genetica\SecuenciValorController@AgregarInput')->name('agregar_input');
     Route::get('secuencia/{id}/editar', 'Genetica\SecuenciValorController@editar')->name('editar_secuencia');
     Route::put('secuencia/{id}', 'Genetica\SecuenciValorController@actualizar')->name('actualizar_secuencia');
+
+    /*RUTAS PARA LA RELACION Ó BUSQUEDA*/
+    Route::get('coincidencia/{id}', 'Genetica\CoincidenciaController@index')->name('coincidencia');
