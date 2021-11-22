@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('home','GeneticaController@home');
 // Route::get('inicio','GeneticaController@inicio');
-// Route::get('muestras/{buscar?}','GeneticaController@todas');
-// Route::get('kit/{buscar?}','GeneticaController@kit');
+ Route::get('muestras/{buscar?}','GeneticaController@todas');
+ Route::get('kit/{buscar?}','GeneticaController@kit');
 
 //Route::get('admin/permiso', 'Admin\PermisoController@index')->name('permiso');
 
@@ -120,3 +120,4 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
     /*RUTAS PARA LA RELACION Ó BUSQUEDA*/
     Route::get('coincidencia/{id}', 'Genetica\CoincidenciaController@index')->name('coincidencia');
+    Route::post('analizar', 'Genetica\CoincidenciaController@analizar')->name('analizar_secuencia');

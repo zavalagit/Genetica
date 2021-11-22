@@ -33,6 +33,24 @@
             border: 2px solid rgba(58, 133, 191, 0.75);
         }
 
+        .btn-warning {
+            font-family: Raleway-SemiBold;
+            font-size: 13px;
+            color: rgba(8, 138, 21, 0.75);
+            letter-spacing: 1px;
+            line-height: 15px;
+            border: 2px solid rgba(8, 138, 21, 0.75);
+            border-radius: 40px;
+            background: transparent;
+            transition: all 0.3s ease 0s;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        }
+        .btn-warning:hover {
+            color: #FFF;
+            background: rgba(10, 240, 37, 0.75);
+            border: 2px solid rgba(10, 240, 37, 0.75);
+        }
+
         /* pinta la ralla de abajo del imput */
         .active-pink-2 input.form-control[type=text]:focus:not([readonly]) {
             border-bottom: 1px solid #f48fb1;
@@ -139,45 +157,61 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <table id="tabla-genetica" class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">No.</th>
-                                                <th scope="col">FOLIO</th>
-                                                <th scope="col">HIST</th>
-                                                <th scope="col">ALGO...</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @if (count($resultado_busqueda))
-                                                @php
-                                                $no = 1;
-                                                @endphp
-                    
-                                                    @foreach ($resultado_busqueda as $str_id => $hits)
+                                    <form action="{{route('analizar_secuencia')}}" id="form-general" class="needs-validation formulario" method="POST" autocomplete="off">
+                                    @csrf
+                                    
+                                        <div class="form-row">
+                                                <table id="tabla-genetica" class="table table-striped table-bordered table-hover">
+                                                    <thead>
                                                         <tr>
-                                                            <th class="th-contador" scope="row" width="1.5%">{{$no++}}</th>
-                                                            <td>{{App\Models\Genetica\Str::find($str_id)->folio}}</td>
-                                                            <td>{{$hits}}</td>
-                                                            <td>
-                                                                
-                                                                'BOX'    
-                                                                
-                                                                
-                                                            </td>
-                                                            
+                                                            <th scope="col">No.</th>
+                                                            <th scope="col">FOLIO</th>
+                                                            <th scope="col">HIST</th>
+                                                            <th scope="col">ANALIZAR</th>
                                                         </tr>
-                                                    @endforeach
-                                            @else
-                                                    <tr class="table-warning">
-                                                        <td colspan="12">
-                                                            <blockquote>No hay registros</blockquote>
-                                                        </td>
-                                                    </tr>
-                                            @endif
-                    
-                                        </tbody>
-                                    </table> 
+                                                    </thead>
+                                                    <tbody>
+                                                        @if (count($resultado_busqueda))
+                                                            @php
+                                                            $no = 1;
+                                                            @endphp
+                                
+                                                                @foreach ($resultado_busqueda as $str_id => $hits)
+                                                                    <tr>
+                                                                        <th class="th-contador" scope="row" width="1.5%">{{$no++}}</th>
+                                                                        <td>{{App\Models\Genetica\Str::find($str_id)->folio}}</td>
+                                                                        <td>{{$hits}}</td>
+                                                                        <td class="text-center">
+                                                                            <input
+                                                                            id="{{$str_id}}"
+                                                                            type="checkbox"
+                                                                            name="analizar_secuencia[]"
+                                                                            value= "{{$str_id}}"/>
+                                                                        </td>
+                                                                        
+                                                                    </tr>
+                                                                @endforeach
+                                                        @else
+                                                                <tr class="table-warning">
+                                                                    <td colspan="12">
+                                                                        <blockquote>No hay registros</blockquote>
+                                                                    </td>
+                                                                </tr>
+                                                        @endif
+                                
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div class="form-row">
+                                            <dir class="col-sm-4">
+                                                @include('includes.boton-form-analizar')
+                                            </dir>
+                                            <dir class="col-sm-6">
+                                                @include('includes.form-error')
+                                                @include('includes.mensaje')
+                                            </dir>
+                                        </div>        
+                                    </form> 
                                 </div>   
                             </div>
                         </div>       

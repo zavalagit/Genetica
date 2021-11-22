@@ -9,11 +9,7 @@ use Illuminate\Http\Request;
 
 class CoincidenciaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //vista de los hits por cada muestra
     public function index($id)
     {
          $secuencias = Secuenciavalor::where('str_id', '<>', $id)->get();
@@ -31,17 +27,17 @@ class CoincidenciaController extends Controller
         //dd($lista->all());
          $resultado_busqueda = $lista_str->countBy();
          //dd($resultado_busqueda->all());
-        return view('genetica.coincidencia.index' , compact('resultado_busqueda'));
+        return view('genetica.coincidencia.index' , compact('resultado_busqueda', 'id'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    //recibimos los checkbox queremos analizar
+    public function analizar(Request $request)
     {
-        //
+        //dd($request->analizar);
+        $str_selecionados = Str::findOrFail($request->analizar_secuencia);
+        $str_analizar = Str::findOrFail($request->analizar);
+        //dd($str_analizar);
+        return view('genetica.coincidencia.analizar' , compact('str_analizar', 'str_selecionados'));
     }
 
     /**
