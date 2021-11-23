@@ -31,15 +31,15 @@
                                             
                                                 @foreach ($analizar->valores->where('marcador_id',$marcador->id) as $valor)
                                                     @if ($loop->first)
-                                                        <td>{{ $valor->valor }}</td>
+                                                        <td id="{{$marcador->id}}-{{$valor->valor}}">{{ $valor->valor }}</td>
                                                     @else
-                                                        <tr class="table-secondary"><td>{{ $valor->valor }}</td></tr>
+                                                        <tr class="table-secondary"><td id="{{$marcador->id}}-{{$valor->valor}}">{{ $valor->valor }}</td></tr>
                                                     @endif
                                                     
                                                 @endforeach
                                             @else
                                             @foreach ($analizar->valores->where('marcador_id',$marcador->id) as $valor)
-                                                    <td>{{ $valor->valor }}</td>
+                                                    <td id="{{$marcador->id}}-{{$valor->valor}}">{{ $valor->valor }}</td>
                                             @endforeach
                                             
                                                 
@@ -59,15 +59,15 @@
                                                 
                                                     @foreach ($analizar->valores->where('marcador_id',$marcador->id) as $valor)
                                                         @if ($loop->first)
-                                                            <td>{{ $valor->valor }}</td>
+                                                            <td id="{{$marcador->id}}-{{$valor->valor}}">{{ $valor->valor }}</td>
                                                         @else
-                                                            <tr class="table-light"><td>{{ $valor->valor }}</td></tr>
+                                                            <tr class="table-light"><td id="{{$marcador->id}}-{{$valor->valor}}">{{ $valor->valor }}</td></tr>
                                                         @endif
                                                         
                                                     @endforeach
                                                 @else
                                                 @foreach ($analizar->valores->where('marcador_id',$marcador->id) as $valor)
-                                                        <td>{{ $valor->valor }}</td>
+                                                        <td id="{{$marcador->id}}-{{$valor->valor}}">{{ $valor->valor }}</td>
                                                 @endforeach
                                                 
                                                     

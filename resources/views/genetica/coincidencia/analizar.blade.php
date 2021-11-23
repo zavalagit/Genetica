@@ -56,9 +56,18 @@
             border-bottom: 1px solid #f48fb1;
             box-shadow: 0 1px 0 0 #f48fb1;
         }
+
+        #content{
+            width: 100%;
+            height: 50px;
+            overflow: scroll;
+        }
+        .row {
+            flex-wrap: nowrap;
+        }
         /* modificaciones de las tablas */
         #contenedor_analizar{
-            width: 200% !important;
+            
         }
 
         /* modificaciones de las tablas */
@@ -115,28 +124,62 @@
             color:white;
             }
 
-            .boton {
-                cursor: pointer;
-                border: none;
-                background: 0;
-                padding: 0 0 0 5px;
-                font-size: 14px !important;
-                line-height: 1.5;
+        .boton {
+            cursor: pointer;
+            border: none;
+            background: 0;
+            padding: 0 0 0 5px;
+            font-size: 14px !important;
+            line-height: 1.5;
                 
-                }
+            }
 
-                .boton:focus {
-                    outline: none;
-                    box-shadow: none;
-                  }
+        .boton:focus {
+            outline: none;
+            box-shadow: none;
+            }
 
+            .resaltar {
+                outline: none;
+                border: none;
+                color: white;
+                width:100%;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                transition-duration: 0.4s;
+                cursor: pointer;
+              }
+
+              .button1 {
+                background-color: white; 
+                color: rgb(231, 16, 16); 
+                border: 2px solid #4CAF50;
+              }
+              
+              .button1:hover {
+                background-color: #4CAF50;
+                color: white;
+                
+              }
+
+              .button1:focus {
+                outline: none;
+                
+              }
+
+              .borderrosa {
+                border: 2px solid #f30eba;
+              }
+              
                 
 
    </style>
 @endsection
 
 @section("scripts")
-{{-- <script src="{{asset('js/genetica/index.js')}}" type="text/javascript"></script> --}}
+<script src="{{asset('js/genetica/resaltar.js')}}" type="text/javascript"></script>
 @endsection
 
 @section('contenido')
@@ -191,15 +234,15 @@
                                                                         
                                                                             @foreach ($str_analizar->valores->where('marcador_id',$marcador->id) as $valor)
                                                                                 @if ($loop->first)
-                                                                                    <td >{{ $valor->valor }}</td>
+                                                                                    <td ><button class="resaltar button1" id="{{$marcador->id}}-{{$valor->valor}}" value="{{$valor->valor}}">{{ $valor->valor }}</button></td>
                                                                                 @else
-                                                                                    <tr class="table-secondary"><td >{{ $valor->valor }}</td></tr>
+                                                                                    <tr class="table-secondary"><td ><button class="resaltar button1" id="{{$marcador->id}}-{{$valor->valor}}" value="{{$valor->valor}}">{{ $valor->valor }}</button></td></tr>
                                                                                 @endif
                                                                                 
                                                                             @endforeach
                                                                         @else
                                                                         @foreach ($str_analizar->valores->where('marcador_id',$marcador->id) as $valor)
-                                                                                <td>{{ $valor->valor }}</td>
+                                                                                <td><button class="resaltar button1" id="{{$marcador->id}}-{{$valor->valor}}" value="{{$valor->valor}}">{{ $valor->valor }}</button></td>
                                                                         @endforeach
                                                                         
                                                                             
@@ -219,15 +262,15 @@
                                                                             
                                                                                 @foreach ($str_analizar->valores->where('marcador_id',$marcador->id) as $valor)
                                                                                     @if ($loop->first)
-                                                                                        <td >{{ $valor->valor }}</td>
+                                                                                        <td ><button class="resaltar button1" id="{{$marcador->id}}-{{$valor->valor}}" value="{{$valor->valor}}">{{ $valor->valor }}</button></td>
                                                                                     @else
-                                                                                        <tr class="table-light"><td >{{ $valor->valor }}</td></tr>
+                                                                                        <tr class="table-light"><td ><button class="resaltar button1" id="{{$marcador->id}}-{{$valor->valor}}" value="{{$valor->valor}}">{{ $valor->valor }}</button></td></tr>
                                                                                     @endif
                                                                                     
                                                                                 @endforeach
                                                                             @else
                                                                             @foreach ($str_analizar->valores->where('marcador_id',$marcador->id) as $valor)
-                                                                                    <td >{{ $valor->valor }}</td>
+                                                                                    <td ><button class="resaltar button1" id="{{$marcador->id}}-{{$valor->valor}}" value="{{$valor->valor}}">{{ $valor->valor }}</button></td>
                                                                             @endforeach
                                                                             
                                                                                 
@@ -255,6 +298,8 @@
                                         </div>
                                       </div>
                                     </div>
+                                   
+                                      
                                     @foreach ($str_selecionados as $key => $analizar)
                                             @include('genetica.coincidencia.tabla_analizar',['analizar' => $analizar])
                                     @endforeach
