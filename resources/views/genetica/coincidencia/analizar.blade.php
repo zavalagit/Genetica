@@ -152,8 +152,7 @@
                 cursor: pointer;
               }
 
-              .button1 {
-                background-color: white; 
+              .button1 { 
                 color: rgb(231, 16, 16); 
                 border: 2px solid #4CAF50;
               }
@@ -170,8 +169,12 @@
               }
 
               .borderrosa {
-                border: 2px solid #f30eba;
+                border: 2px solid rgb(255, 0, 255);
               }
+
+             mark{
+                color: white;
+             }
               
                 
 
