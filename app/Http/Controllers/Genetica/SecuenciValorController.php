@@ -125,13 +125,15 @@ class SecuenciValorController extends Controller
     public function actualizar(ValidarValor $request, $id)
     {
         //return response()->json(['mensaje' => $request->kit_id]);
-            
+        $str_old = Str::findOrFail($id);
+        
         if ($request->ajax()) {
             if (Str::destroy($id)) {
                         //guardar en tabla strs
                         $str = new Str;
                         $str->folio = $request->folio;
                         $str->kit_id = $request->kit_id;
+                        $str->created_at = $str_old->created_at;
                         $str->save();
             
                         //guardar en tabla secuenciasvalores
@@ -141,6 +143,7 @@ class SecuenciValorController extends Controller
                                 $secuencia->str_id = $str->id;
                                 $secuencia->marcador_id = array_keys($request->valor)[$i];
                                 $secuencia->valor = $request->valor[array_keys($request->valor)[$i]][$j];
+                                $secuencia->created_at = $str_old->created_at;
                                 $secuencia->save();
                             }
                         }
