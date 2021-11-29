@@ -115,11 +115,12 @@
 
 @section("scripts")
 <script src="{{asset('js/genetica/index.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/genetica/modal_tabla.js')}}" type="text/javascript"></script>
 @endsection
 
 @section('contenido')
 
-
+                <meta name="csrf-token" content="{{ csrf_token() }}">
                 <div style="height: 50px;"></div>
                 <div class="container">
                     <div class="row">
@@ -158,7 +159,13 @@
                                                         <tr>
                                                             <th class="th-contador" scope="row" width="1.5%">{{$no++}}</th>
                                                             <td>{{$muestra->folio}}</td>
-                                                            <td>'lista de marcadores'</td>
+                                                            <td>
+                                                                <a data-secuencia={{$muestra->id}} class="btn-ver-secuencia">
+                                                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="left" title="Ver secuencia">
+                                                                        <i class="fas fa-book fa-2x"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </td>
                                                             <td>
                                                                 
                                                                     <a href="{{route('editar_secuencia', ['id' => $muestra->id])}}">
@@ -199,5 +206,23 @@
                             </div>
                         </div>       
                     </div>                  
-                </div>             
+                </div>
+        {{--  modal para ver la tabla de marcadores con valores          --}}
+                <div class="modal fade" id="modal-tabla-secuencia" data-rol-set="" tabindex="-1" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Secuencia de marcadores con valores</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </div>
+                            <div class="modal-body">
+                               {{--  aqui va la tabla de secuencia  --}}
+                               {{--  @include('genetica.secuencia.ver_tabla')  --}}
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
 @endsection

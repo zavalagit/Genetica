@@ -174,6 +174,21 @@ class SecuenciValorController extends Controller
         ]);
 
     }
+    //mandar los datos por ajax al blade ver_tabla
+    public function ver(Request $request)
+    {
+        //return response()->json(['respuesta' => $request->secuencia]);
+        if ($request->ajax()) {
+
+            $analizar = Str::findOrFail($request->secuencia);
+            return view('genetica.secuencia.ver_tabla', compact('analizar'));
+
+
+        }
+        
+
+    }
+
 
     
 }
