@@ -33,7 +33,15 @@ class KitMarcadorController extends Controller
        
         //obtenemos por medio del kit todos los marcadores relacionados de la tabla kit_marcadores
         $KitMarcadores = $kit->marcadores()->orderBy('orden', 'asc')->get();
-        //dd($kit);
+        //dd($KitMarcadores);
+        $inicio = $kit->marcadores()->where('orden', 0)->count();
+        //dd($inicio);
+        if ($inicio > 1) {
+            foreach ($KitMarcadores as $or => $marcador){ 
+                $kit->marcadores()->updateExistingPivot($marcador->id, ['orden' => $or]);
+                }
+        } 
+        
         return view('genetica.kit-marcador.ordenar', compact('kit','KitMarcadores'));
         //dd($KitMarcadores);
     }

@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('home','GeneticaController@home');
 // Route::get('inicio','GeneticaController@inicio');
- Route::get('muestras/{buscar?}','GeneticaController@todas');
- Route::get('kit/{buscar?}','GeneticaController@kit');
+ //Route::get('muestras/{buscar?}','GeneticaController@todas');
+ //Route::get('kit/{buscar?}','GeneticaController@kit');
 
 //Route::get('admin/permiso', 'Admin\PermisoController@index')->name('permiso');
 

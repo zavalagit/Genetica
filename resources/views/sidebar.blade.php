@@ -9,8 +9,8 @@
         </div>
 
         <ul class="sidebar-menu">
-            <li>
-                {{-- <a href="#">About</a> --}}
+            {{--  <li>
+                
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"><i style="color:rgb(24, 24, 231);" class="fas fa-dna"></i>&nbsp&nbspMuestras ADN</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
@@ -23,7 +23,7 @@
                         <a href="#">Page 3</a>
                     </li>
                 </ul>
-            </li>
+            </li>  --}}
             
             <li>
                 
